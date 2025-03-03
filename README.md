@@ -1,11 +1,9 @@
 # README: AWS Cloud Solution Deployment
 
 ## Overview
-
 This project is a **serverless AWS Cloud Solution** that utilizes **AWS CDK**, **Lambda**, **API Gateway**, and **DynamoDB** to provide a scalable and cost-effective cloud architecture.
 
 ## Features
-
 - **AWS Lambda**: Handles backend logic execution.
 - **API Gateway**: Exposes secure REST endpoints.
 - **DynamoDB**: NoSQL database for data storage.
@@ -15,9 +13,7 @@ This project is a **serverless AWS Cloud Solution** that utilizes **AWS CDK**, *
 - **EventBridge (Future Enhancement)**: Automates data processing and reporting.
 
 ## Architecture
-
 The system is designed as follows:
-
 1. **Client** sends requests via API Gateway.
 2. **API Gateway** routes requests to AWS Lambda.
 3. **Lambda Functions** process business logic and interact with DynamoDB.
@@ -26,25 +22,20 @@ The system is designed as follows:
 6. **Cognito (if enabled)** manages user authentication.
 
 ## Prerequisites
-
 Before deploying, ensure you have:
-
 - **AWS CLI** installed and configured (`aws configure`)
 - **Node.js & npm** installed
 - **Python 3.x** installed
 - **AWS CDK** installed globally (`npm install -g aws-cdk`)
 
 ## Installation & Setup
-
 ### 1️⃣ Clone the Repository
-
 ```sh
  git clone <repository-url>
  cd aws-cloud-solution
 ```
 
 ### 2️⃣ Set Up Virtual Environment
-
 ```sh
  python -m venv .env
  source .env/bin/activate  # Mac/Linux
@@ -52,28 +43,32 @@ Before deploying, ensure you have:
 ```
 
 ### 3️⃣ Install Dependencies
-
 ```sh
  pip install -r requirements.txt
 ```
 
-### 4️⃣ Initialize AWS CDK
+### 4️⃣ Modify `app.py` to Set AWS Account & Region
+Before deploying, modify the `app.py` file to specify the correct AWS **Account Number** and **Region**:
+```python
 
+env = core.Environment(account=<AWS_ACCOUNT_ID>, region=<AWS_REGION>)
+
+```
+Replace `your-account-id` with your AWS account number and `your-region` with the appropriate AWS region.
+
+### 5️⃣ Initialize AWS CDK
 ```sh
  cdk bootstrap
  cdk synth
 ```
 
-### 5️⃣ Deploy the Solution
-
+### 6️⃣ Deploy the Solution
 ```sh
  cdk deploy
 ```
 
 ## Testing the Solution
-
 ### Using cURL:
-
 ```sh
  curl -X POST https://<api-id>.execute-api.<region>.amazonaws.com/prod/items \
  -H "Content-Type: application/json" \
@@ -81,36 +76,28 @@ Before deploying, ensure you have:
 ```
 
 ### Using Postman:
-
 - Open Postman.
 - Create a **POST** request to the API Gateway URL.
 - Add **JSON payload**: `{ "id": "123", "data": "Test API call" }`
 - Click **Send**.
 
 ## Monitoring & Debugging
-
 - **Check CloudWatch Logs**:
-
 ```sh
  aws logs tail /aws/lambda/DataHandler --follow
 ```
-
 - **Check DynamoDB Data**:
   - Go to AWS Console → DynamoDB → Tables → DataTable → Items.
 
 ## Cleanup (Destroying the Stack)
-
 ```sh
  cdk destroy
 ```
 
 ## Future Enhancements
-
 - Implement **AWS Cognito** for user authentication.
 - Automate reporting with **AWS EventBridge**.
 - Optimize auto-scaling for cost efficiency.
 
 ## License
-
-This project is licensed under the MIT License.
-
+This pro
