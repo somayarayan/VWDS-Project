@@ -48,7 +48,7 @@ Before deploying, ensure you have:
 ```
 
 ### 4️⃣ Modify `app.py` to Set AWS Account & Region
-Before deploying, modify the `app.py` file to specify the correct AWS **Account Number** and **Region**:
+Before deploying, modify the `app.py` file to specify the correct AWS **Account Number** and **Region**, I am using "eu-central-1" however change it to whatever region you want:
 ```python
 
 env = core.Environment(account=<AWS_ACCOUNT_ID>, region=<AWS_REGION>)
