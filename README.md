@@ -1,112 +1,58 @@
-# README: AWS Cloud Solution Deployment
 
-## Overview
+# Welcome to your CDK Python project!
 
-This project is a **serverless AWS Cloud Solution** that utilizes **AWS CDK**, **Lambda**, **API Gateway**, and **DynamoDB** to provide a scalable and cost-effective cloud architecture.
+This is a blank project for CDK development with Python.
 
-## Features
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
-- **AWS Lambda**: Handles backend logic execution.
-- **API Gateway**: Exposes secure REST endpoints.
-- **DynamoDB**: NoSQL database for data storage.
-- **CloudWatch**: Monitors application logs and performance.
-- **AWS CDK**: Infrastructure as Code (IaC) for deploying AWS resources.
-- **Cognito (Optional Enhancement)**: Provides authentication and user management.
-- **EventBridge (Future Enhancement)**: Automates data processing and reporting.
+This project is set up like a standard Python project.  The initialization
+process also creates a virtualenv within this project, stored under the `.venv`
+directory.  To create the virtualenv it assumes that there is a `python3`
+(or `python` for Windows) executable in your path with access to the `venv`
+package. If for any reason the automatic creation of the virtualenv fails,
+you can create the virtualenv manually.
 
-## Architecture
+To manually create a virtualenv on MacOS and Linux:
 
-The system is designed as follows:
-
-1. **Client** sends requests via API Gateway.
-2. **API Gateway** routes requests to AWS Lambda.
-3. **Lambda Functions** process business logic and interact with DynamoDB.
-4. **DynamoDB** stores and retrieves data securely.
-5. **CloudWatch Logs** track API and Lambda execution.
-6. **Cognito (if enabled)** manages user authentication.
-
-## Prerequisites
-
-Before deploying, ensure you have:
-
-- **AWS CLI** installed and configured (`aws configure`)
-- **Node.js & npm** installed
-- **Python 3.x** installed
-- **AWS CDK** installed globally (`npm install -g aws-cdk`)
-
-## Installation & Setup
-
-### 1️⃣ Clone the Repository
-
-```sh
- git clone <repository-url>
- cd aws-cloud-solution
+```
+$ python3 -m venv .venv
 ```
 
-### 2️⃣ Set Up Virtual Environment
+After the init process completes and the virtualenv is created, you can use the following
+step to activate your virtualenv.
 
-```sh
- python -m venv .env
- source .env/bin/activate  # Mac/Linux
- .env\Scripts\activate  # Windows
+```
+$ source .venv/bin/activate
 ```
 
-### 3️⃣ Install Dependencies
+If you are a Windows platform, you would activate the virtualenv like this:
 
-```sh
- pip install -r requirements.txt
+```
+% .venv\Scripts\activate.bat
 ```
 
-### 4️⃣ Initialize AWS CDK
+Once the virtualenv is activated, you can install the required dependencies.
 
-```sh
- cdk bootstrap
- cdk synth
+```
+$ pip install -r requirements.txt
 ```
 
-### 5️⃣ Deploy the Solution
+At this point you can now synthesize the CloudFormation template for this code.
 
-```sh
- cdk deploy
+```
+$ cdk synth
 ```
 
-## Testing the Solution
+To add additional dependencies, for example other CDK libraries, just add
+them to your `setup.py` file and rerun the `pip install -r requirements.txt`
+command.
 
-### Using cURL:
+## Useful commands
 
-```sh
- curl -X POST https://<api-id>.execute-api.<region>.amazonaws.com/prod/items \
- -H "Content-Type: application/json" \
- -d '{"id": "123", "data": "Test API call"}'
-```
+ * `cdk ls`          list all stacks in the app
+ * `cdk synth`       emits the synthesized CloudFormation template
+ * `cdk deploy`      deploy this stack to your default AWS account/region
+ * `cdk diff`        compare deployed stack with current state
+ * `cdk docs`        open CDK documentation
 
-### Using Postman:
-
-- Open Postman.
-- Create a **POST** request to the API Gateway URL.
-- Add **JSON payload**: `{ "id": "123", "data": "Test API call" }`
-- Click **Send**.
-
-## Monitoring & Debugging
-
-- **Check CloudWatch Logs**:
-
-```sh
- aws logs tail /aws/lambda/DataHandler --follow
-```
-
-- **Check DynamoDB Data**:
-  - Go to AWS Console → DynamoDB → Tables → DataTable → Items.
-
-## Cleanup (Destroying the Stack)
-
-```sh
- cdk destroy
-```
-
-## Future Enhancements
-
-- Implement **AWS Cognito** for user authentication.
-- Automate reporting with **AWS EventBridge**.
-- Optimize auto-scaling for cost efficiency.
-
+Enjoy!
